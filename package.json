@@ -1,0 +1,54 @@
+{
+    "name": "teams-logger",
+    "version": "0.0.1",
+    "description": "A helper for sending Microsoft Teams notifications",
+    "author": "Iiro Jäppinen <iiro.jappinen@verkkokauppa.com>",
+    "main": "index.js",
+    "bin": "bin/teams-logger",
+    "files": [
+        "bin/teams-logger",
+        "lib/*.js"
+    ],
+    "scripts": {
+        "lint": "prettier --check **/*.js bin/teams-logger"
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "standard-version": {
+        "scripts": {
+            "prerelease": "npm run lint"
+        }
+    },
+    "dependencies": {
+        "pipe-args": "^1.3.0",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4",
+        "yargs": "^13.2.4"
+    },
+    "devDependencies": {
+        "@commitlint/config-conventional": "^8.0.0",
+        "commitlint": "^8.0.0",
+        "husky": "^3.0.0",
+        "prettier": "^1.18.2",
+        "standard-version": "^6.0.1"
+    },
+    "keywords": [
+        "Connector",
+        "Incoming Webhook",
+        "Markdown",
+        "Message",
+        "Microsoft Teams",
+        "Microsoft",
+        "Office 365 Connector",
+        "Teams",
+        "Webhook"
+    ]
+}
