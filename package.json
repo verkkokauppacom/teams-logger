@@ -1,7 +1,7 @@
 {
     "name": "teams-logger",
     "version": "0.0.1",
-    "description": "A helper for sending Microsoft Teams notifications",
+    "description": "Send messages to Microsoft Teams via a custom incoming webhook",
     "author": "Iiro Jäppinen <iiro.jappinen@verkkokauppa.com>",
     "main": "index.js",
     "bin": "bin/teams-logger",
