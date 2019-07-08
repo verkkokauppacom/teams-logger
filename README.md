@@ -8,7 +8,9 @@ The simple usage is to post messages formatted in Markdown, with optional link b
 
 The only required configuration is the Webhook URL for posting messages a to a certain channel. After creating a Webhook connector to a channel, save its webhook URL and specify it to `teams-logger` via the `TEAMS_LOGGER_WEBHOOK` env variable or the `--webhook` command line flag.
 
-## Simple usage
+## Usage
+
+### Simple
 
 Post a message to a channel:
 
@@ -33,7 +35,7 @@ Add Link button to a message:
 teams-logger "Click the button\!" --button "[The Button](https://example.com)" --webhook "https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 ```
 
-## Advanced usage
+### Advanced
 
 You can learn how to create custom messages by following the [Post an actionable message card to an Office 365 group](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors) tutorial:
 
@@ -42,7 +44,7 @@ export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 cat my_json_message.json | teams-logger raw
 ```
 
-## Node usage
+### Node API
 
 `teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
 
@@ -70,3 +72,16 @@ rawLogger({ body, webhook })
  */
 simpleLogger({ links, message, webhook })
 ```
+
+## Development
+
+Todo at this point...
+
+### Publishing
+
+This project adheres to the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0-beta.4/). To create a new version:
+
+1. Run `npm run version` locally, and wait for the script to run
+1. If all prerelease checks pass, a new commit containing the version number bump, `CHANGELOG.md` and git tag will be created
+1. Push the new commit to git by running `git push --follow-tags`
+1. Publish a new release to npm by running `npm publish`
