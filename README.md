@@ -1,4 +1,12 @@
-# `teams-logger`
+# `@verkkokauppacom/teams-logger`
+
+```bash
+# npm
+npm intall --global @verkkokauppacom/teams-logger
+
+# yarn
+yarn add --global @verkkokauppacom/teams-logger
+```
 
 Send messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
 
@@ -49,7 +57,7 @@ cat my_json_message.json | teams-logger raw
 `teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
 
 ```js
-const { rawLogger, simpleLogger } = require('teams-logger')
+const { rawLogger, simpleLogger } = require('@verkkokauppacom/teams-logger')
 
 /**
  * Send raw JSON to Microsoft Teams
