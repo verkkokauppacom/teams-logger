@@ -10,7 +10,8 @@
         "lib/*.js"
     ],
     "scripts": {
-        "lint": "prettier --check **/*.js bin/teams-logger"
+        "lint": "prettier --check **/*.js bin/teams-logger",
+        "version": "standard-version --no-verify"
     },
     "commitlint": {
         "extends": [
