@@ -30,8 +30,7 @@ This is the message body.
 Add Link button to a message:
 
 ```bash
-export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
-teams-logger "Click the button\!" --button "[The Button](https://example.com)"
+teams-logger "Click the button\!" --button "[The Button](https://example.com)" --webhook "https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 ```
 
 ## Advanced usage
@@ -41,4 +40,33 @@ You can learn how to create custom messages by following the [Post an actionable
 ```bash
 export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 cat my_json_message.json | teams-logger raw
+```
+
+## Node usage
+
+`teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
+
+```js
+const { rawLogger, simpleLogger } = require('teams-logger')
+
+/**
+ * Send raw JSON to Microsoft Teams
+ * 
+ * @param {Object} options
+ * @param {JSON} [options.body] - JSON Message
+ * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
+ * @returns {Promise} - Request
+ */
+rawLogger({ body, webhook })
+
+/**
+ * Send Markdown message to Microsoft Teams
+ * 
+ * @param {Object} options
+ * @param {Array<string>} [options.links] - Link buttons in the Markdown format `[Label](url)`
+ * @param {String} [options.message] - Message formatted in Markdown
+ * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
+ * @returns {Promise} - Request
+ */
+simpleLogger({ links, message, webhook })
 ```
