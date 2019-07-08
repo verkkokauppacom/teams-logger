@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "Send messages to Microsoft Teams via a custom incoming webhook",
     "author": "Iiro Jäppinen <iiro.jappinen@verkkokauppa.com>",
+    "license": "MIT",
     "main": "index.js",
     "bin": "bin/teams-logger",
     "files": [
