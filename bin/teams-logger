@@ -3,9 +3,14 @@
 'use strict'
 
 require('pipe-args').load()
+
 const pkg = require('../package.json')
+
+const coerceJson = require('../lib/coerceJson')
+const coerceLinks = require('../lib/coerceLinks')
+const coerceWebhook = require('../lib/coerceWebhook')
+
 const { rawLogger, simpleLogger } = require('../')
-const parseLinks = require('../lib/parseLinks')
 
 const ENV_PREFIX = 'TEAMS_LOGGER'
 
@@ -16,13 +21,7 @@ require('yargs')
         alias: 'w',
         describe: `Microsoft Teams Webhook [${ENV_PREFIX}_WEBHOOK]`,
         require: true,
-        coerce: webhook => {
-            if (webhook.startsWith('https://outlook.office.com')) {
-                return webhook
-            } else {
-                throw 'Webhook does not look correct!'
-            }
-        }
+        coerce: coerceWebhook
     })
     .command(
         '* [message]',
@@ -34,7 +33,7 @@ require('yargs')
                     describe:
                         'Add link buttons with Markdown syntax [Title](url)',
                     type: 'array',
-                    coerce: parseLinks
+                    coerce: coerceLinks
                 })
                 .positional('message', {
                     describe: 'Markdown message.',
@@ -53,13 +52,7 @@ require('yargs')
                 describe: 'Valid Microsoft Teams JSON message.',
                 require: true,
                 type: 'json',
-                coerce: msg => {
-                    try {
-                        return JSON.parse(msg)
-                    } catch (error) {
-                        throw 'Unable to parse JSON!'
-                    }
-                }
+                coerce: coerceJson
             })
         },
         ({ json, webhook }) => rawLogger({ body: json, webhook })
