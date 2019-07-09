@@ -2,7 +2,7 @@
 
 ```bash
 # npm
-npm intall --global @verkkokauppacom/teams-logger
+npm install --global @verkkokauppacom/teams-logger
 
 # yarn
 yarn add --global @verkkokauppacom/teams-logger
