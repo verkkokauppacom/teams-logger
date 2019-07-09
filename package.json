@@ -14,7 +14,12 @@
     ],
     "scripts": {
         "lint": "prettier --check **/*.js bin/teams-logger",
+        "test": "nyc -r=lcov -r=text-summary tape test/**/*.spec.js",
         "version": "standard-version --no-verify"
+    },
+    "nyc": {
+        "all": true,
+        "check-coverage": true
     },
     "commitlint": {
         "extends": [
@@ -28,7 +33,7 @@
     },
     "standard-version": {
         "scripts": {
-            "prerelease": "npm run lint"
+            "prerelease": "npm run lint && npm test"
         }
     },
     "dependencies": {
@@ -41,8 +46,12 @@
         "@commitlint/config-conventional": "^8.0.0",
         "commitlint": "^8.0.0",
         "husky": "^3.0.0",
+        "nyc": "^14.1.1",
         "prettier": "^1.18.2",
-        "standard-version": "^6.0.1"
+        "sinon": "^7.3.2",
+        "standard-version": "^6.0.1",
+        "tape": "^4.11.0",
+        "testdouble": "^3.12.1"
     },
     "keywords": [
         "Connector",
