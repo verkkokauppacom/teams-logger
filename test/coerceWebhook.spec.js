@@ -7,7 +7,7 @@ test('coerceWebhook', assert => {
 
     const url = 'https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY'
     assert.deepEqual(coerceWebhook(url), url, 'returns valid webhook URL')
-    
+
     assert.throws(
         () => coerceWebhook('https://example.com'),
         'Invalid webhook!',

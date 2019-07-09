@@ -5,11 +5,7 @@ const addPotentialActions = require('../lib/addPotentialActions')
 test('addPotentialActions', assert => {
     assert.plan(6)
 
-    assert.deepEqual(
-        addPotentialActions(),
-        {},
-        'defaults to empty message'
-    )
+    assert.deepEqual(addPotentialActions(), {}, 'defaults to empty message')
 
     assert.deepEqual(
         addPotentialActions({}),

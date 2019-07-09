@@ -26,6 +26,9 @@ test('teams-logger', async assert => {
     try {
         await execa.node(binPath, ['raw', '{"foo":"bar"}'])
     } catch ({ stderr }) {
-        assert.true(/Missing required argument: webhook/.test(stderr), 'exits when webhook is missing')
+        assert.true(
+            /Missing required argument: webhook/.test(stderr),
+            'exits when webhook is missing'
+        )
     }
 })
