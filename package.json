@@ -7,9 +7,11 @@
     "repository": "github:verkkokauppacom/teams-logger",
     "bugs": "https://github.com/verkkokauppacom/teams-logger/issues",
     "main": "index.js",
-    "bin": "bin/teams-logger",
+    "bin": {
+        "teams-logger": "bin/teams-logger.js"
+    },
     "files": [
-        "bin/teams-logger",
+        "bin/teams-logger.js",
         "lib/*.js"
     ],
     "scripts": {
@@ -45,6 +47,7 @@
     "devDependencies": {
         "@commitlint/config-conventional": "^8.0.0",
         "commitlint": "^8.0.0",
+        "execa": "^2.0.3",
         "husky": "^3.0.0",
         "nyc": "^14.1.1",
         "prettier": "^1.18.2",

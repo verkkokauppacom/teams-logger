@@ -16,6 +16,7 @@ const ENV_PREFIX = 'TEAMS_LOGGER'
 
 require('yargs')
     .env(ENV_PREFIX)
+    .scriptName(pkg.name)
     .version(pkg.version)
     .option('webhook', {
         alias: 'w',
