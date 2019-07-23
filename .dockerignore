@@ -1,0 +1,5 @@
+*
+!bin/*
+!lib/*
+!index.js
+!package*.json

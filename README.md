@@ -101,6 +101,15 @@ rawLogger({ body, webhook })
 simpleLogger({ links, message, webhook })
 ```
 
+## Docker container support
+
+This repository contains a `Dockerfile` for building a small image based on [node:alpine](https://hub.docker.com/_/node/). The API of the container is the same as the cli:
+
+```bash
+❯ docker build --tag teams-logger .
+❯ docker run teams-logger --help
+```
+
 ## Development
 
 Todo at this point...
