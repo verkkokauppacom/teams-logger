@@ -8,6 +8,26 @@ npm install --global @verkkokauppacom/teams-logger
 yarn add --global @verkkokauppacom/teams-logger
 ```
 
+```bash
+❯ npx teams-logger --help
+teams-logger [message]
+
+Post Markdown to Microsoft Teams
+
+Commands:
+  teams-logger [message]     Post Markdown to Microsoft Teams          [default]
+  teams-logger raw [json]    Post JSON message to Microsoft Teams
+
+Positionals:
+  message  Markdown message.
+
+Options:
+  --help         Show help                                             [boolean]
+  --version      Show version number                                   [boolean]
+  --webhook, -w  Microsoft Teams Webhook [TEAMS_LOGGER_WEBHOOK]       [required]
+  --link, -l     Add link buttons with Markdown syntax [Title](url)      [array]
+```
+
 Send messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
 
 The simple usage is to post messages formatted in Markdown, with optional link buttons that are added to the bottom of messages. More advanced usage is possible by sending the entire [Office 365 Connector JSON](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#creating-messages-through-office-365-connectors).
