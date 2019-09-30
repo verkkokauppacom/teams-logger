@@ -42,19 +42,19 @@
         "pipe-args": "^1.3.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.4",
-        "yargs": "^13.3.0"
+        "yargs": "^14.0.0"
     },
     "devDependencies": {
-        "@commitlint/config-conventional": "^8.1.0",
-        "commitlint": "^8.1.0",
-        "execa": "^2.0.3",
-        "husky": "^3.0.1",
+        "@commitlint/config-conventional": "^8.2.0",
+        "commitlint": "^8.2.0",
+        "execa": "^2.0.4",
+        "husky": "^3.0.7",
         "nyc": "^14.1.1",
         "prettier": "^1.18.2",
-        "sinon": "^7.3.2",
-        "standard-version": "^6.0.1",
+        "sinon": "^7.5.0",
+        "standard-version": "^7.0.0",
         "tape": "^4.11.0",
-        "testdouble": "^3.12.2"
+        "testdouble": "^3.12.4"
     },
     "keywords": [
         "Connector",
