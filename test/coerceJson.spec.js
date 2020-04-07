@@ -2,7 +2,7 @@ const test = require('tape')
 
 const coerceJson = require('../lib/coerceJson')
 
-test('coerceJson', assert => {
+test('coerceJson', (assert) => {
     assert.plan(2)
 
     assert.deepEqual(

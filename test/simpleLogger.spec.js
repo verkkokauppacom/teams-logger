@@ -7,7 +7,7 @@ testdouble.replace('../lib/rawLogger', rawLogger)
 
 const simpleLogger = require('../lib/simpleLogger')
 
-test('simpleLogger', assert => {
+test('simpleLogger', (assert) => {
     assert.plan(4)
 
     simpleLogger({ message: 'test', webhook: 'https://example.com' })

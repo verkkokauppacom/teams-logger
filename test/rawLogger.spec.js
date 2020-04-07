@@ -7,7 +7,7 @@ testdouble.replace('request-promise', request)
 
 const { rawLogger } = require('../')
 
-test('rawLogger', assert => {
+test('rawLogger', (assert) => {
     assert.plan(2)
 
     rawLogger({ body: { foo: 'bar' }, webhook: 'https://example.com' })

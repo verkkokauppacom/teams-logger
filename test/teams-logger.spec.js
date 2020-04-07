@@ -6,7 +6,7 @@ const pkg = require('../package.json')
 
 const binPath = path.resolve(process.cwd(), './bin/teams-logger.js')
 
-test('teams-logger', async assert => {
+test('teams-logger', async (assert) => {
     assert.plan(3)
 
     const result1 = await execa.node(binPath, ['--version'])

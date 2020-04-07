@@ -2,7 +2,7 @@ const test = require('tape')
 
 const coerceLinks = require('../lib/coerceLinks')
 
-test('coerceLinks', assert => {
+test('coerceLinks', (assert) => {
     assert.plan(4)
 
     assert.deepEqual(coerceLinks(), [], 'returns empty array for no links')

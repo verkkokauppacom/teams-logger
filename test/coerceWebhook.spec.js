@@ -2,7 +2,7 @@ const test = require('tape')
 
 const coerceWebhook = require('../lib/coerceWebhook')
 
-test('coerceWebhook', assert => {
+test('coerceWebhook', (assert) => {
     assert.plan(2)
 
     const url = 'https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY'

@@ -27,7 +27,7 @@ require('yargs')
     .command(
         '* [message]',
         'Post Markdown to Microsoft Teams',
-        yargs => {
+        (yargs) => {
             yargs
                 .option('link', {
                     alias: 'l',
@@ -48,7 +48,7 @@ require('yargs')
     .command(
         'raw [json]',
         'Post JSON message to Microsoft Teams',
-        yargs => {
+        (yargs) => {
             yargs.positional('json', {
                 describe: 'Valid Microsoft Teams JSON message.',
                 require: true,
