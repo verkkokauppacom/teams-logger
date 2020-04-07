@@ -18,7 +18,7 @@
         "lib/*.js"
     ],
     "scripts": {
-        "lint": "prettier --check **/*.js bin/teams-logger",
+        "lint": "prettier --check **/*.js",
         "test": "nyc -r=lcov -r=text-summary tape test/**/*.spec.js",
         "version": "standard-version --no-verify"
     },
