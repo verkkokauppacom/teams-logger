@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/verkkokauppacom/teams-logger/compare/v1.0.3...v2.0.0) (2020-04-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** A lot of the dependencies have dropped support for EOL Node.js versions, so also set egines.node to ">= 10"
+
+* **deps:** update dependencies ([6d91dae](https://github.com/verkkokauppacom/teams-logger/commit/6d91dae70cb21c94650a4d97af7dcdabceb4278c))
+
 ### [1.0.3](https://github.com/verkkokauppacom/teams-logger/compare/v1.0.2...v1.0.3) (2019-09-30)
 
 
