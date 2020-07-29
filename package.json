@@ -46,9 +46,8 @@
         }
     },
     "dependencies": {
+        "bent": "^7.3.9",
         "pipe-args": "^1.3.0",
-        "request": "^2.88.2",
-        "request-promise": "^4.2.6",
         "yargs": "^15.4.1"
     },
     "devDependencies": {

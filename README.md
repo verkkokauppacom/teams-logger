@@ -85,7 +85,7 @@ const { rawLogger, simpleLogger } = require('@verkkokauppacom/teams-logger')
  * @param {Object} options
  * @param {JSON} [options.body] - JSON Message
  * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
- * @returns {Promise} - Request
+ * @returns {Promise} - Response
  */
 rawLogger({ body, webhook })
 
@@ -96,7 +96,7 @@ rawLogger({ body, webhook })
  * @param {Array<string>} [options.links] - Link buttons in the Markdown format `[Label](url)`
  * @param {String} [options.message] - Message formatted in Markdown
  * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
- * @returns {Promise} - Request
+ * @returns {Promise} - Response
  */
 simpleLogger({ links, message, webhook })
 ```
