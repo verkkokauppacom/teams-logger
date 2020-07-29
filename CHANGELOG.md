@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/verkkokauppacom/teams-logger/compare/v2.0.0...v2.1.0) (2020-07-29)
+
+
+### Features
+
+* replace request and request-promise with bent ([61bea8c](https://github.com/verkkokauppacom/teams-logger/commit/61bea8c2416d1d3a93f6210e4e7bda4b89ea9305))
+
 ## [2.0.0](https://github.com/verkkokauppacom/teams-logger/compare/v1.0.3...v2.0.0) (2020-04-07)
 
 
