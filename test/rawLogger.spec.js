@@ -10,13 +10,19 @@ const { rawLogger } = require('../')
 test('rawLogger', (assert) => {
     assert.plan(2)
 
-    rawLogger({ json: { foo: 'bar' }, webhook: 'https://example.com' })
+    rawLogger({
+        allowFailure: false,
+        json: { foo: 'bar' },
+        webhook: 'https://example.com',
+        timeout: 30
+    })
 
     assert.true(got.post.calledOnce, 'called exactly once')
 
     assert.true(
         got.post.calledOnceWith('https://example.com', {
-            json: { foo: 'bar' }
+            json: { foo: 'bar' },
+            timeout: 30000
         }),
         'called with correct arguments'
     )

@@ -24,6 +24,16 @@ require('yargs')
         require: true,
         coerce: coerceWebhook
     })
+    .option('timeout', {
+        alias: 't',
+        describe: `Timeout in seconds before fail`,
+        type: 'number'
+    })
+    .option('allow-failure', {
+        describe: `Exit with code 0 when failed`,
+        type: 'boolean',
+        default: false
+    })
     .command(
         '* [message]',
         'Post Markdown to Microsoft Teams',
@@ -42,8 +52,14 @@ require('yargs')
                     type: 'markdown'
                 })
         },
-        ({ link, message, webhook }) =>
-            simpleLogger({ links: link, message, webhook })
+        ({ allowFailure, link, message, timeout, webhook }) =>
+            simpleLogger({
+                allowFailure,
+                links: link,
+                message,
+                timeout,
+                webhook
+            })
     )
     .command(
         'raw [json]',
@@ -56,5 +72,6 @@ require('yargs')
                 coerce: coerceJson
             })
         },
-        ({ json, webhook }) => rawLogger({ body: json, webhook })
+        ({ allowFailure, json, timeout, webhook }) =>
+            rawLogger({ allowFailure, json, timeout, webhook })
     ).argv

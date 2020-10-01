@@ -22,10 +22,12 @@ Positionals:
   message  Markdown message.
 
 Options:
-  --help         Show help                                             [boolean]
-  --version      Show version number                                   [boolean]
-  --webhook, -w  Microsoft Teams Webhook [TEAMS_LOGGER_WEBHOOK]       [required]
-  --link, -l     Add link buttons with Markdown syntax [Title](url)      [array]
+      --help           Show help                                       [boolean]
+      --version        Show version number                             [boolean]
+  -w, --webhook        Microsoft Teams Webhook [TEAMS_LOGGER_WEBHOOK] [required]
+  -t, --timeout        Timeout in seconds before fail                   [number]
+      --allow-failure  Exit with code 0 when failed   [boolean] [default: false]
+  -l, --link           Add link buttons with Markdown syntax [Title](url)[array]
 ```
 
 Send messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
@@ -81,24 +83,28 @@ const { rawLogger, simpleLogger } = require('@verkkokauppacom/teams-logger')
 
 /**
  * Send raw JSON to Microsoft Teams
- * 
+ *
  * @param {Object} options
- * @param {JSON} [options.body] - JSON Message
- * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
+ * @param {boolean} [options.allowFailure] - Whether to exit with code 0 even when request failed
+ * @param {JSON} options.json - JSON Message
+ * @param {Number} [options.timeout] - HTTP Request timeout in seconds
+ * @param {string} options.webhook - Office 365 Incoming Webhook URL
  * @returns {Promise} - Response
  */
-rawLogger({ body, webhook })
+rawLogger({ allowFailure, json, timeout, webhook })
 
 /**
  * Send Markdown message to Microsoft Teams
- * 
+ *
  * @param {Object} options
+ * @param {boolean} [options.allowFailure] - Whether to exit with code 0 even when request failed
  * @param {Array<string>} [options.links] - Link buttons in the Markdown format `[Label](url)`
- * @param {String} [options.message] - Message formatted in Markdown
- * @param {String} [options.webhook] - Office 365 Incoming Webhook URL
+ * @param {String} options.message - Message formatted in Markdown
+ * @param {Number} [options.timeout] - HTTP Request timeout
+ * @param {String} options.webhook - Office 365 Incoming Webhook URL
  * @returns {Promise} - Response
  */
-simpleLogger({ links, message, webhook })
+simpleLogger({ allowFailure, links, message, timeout, webhook })
 ```
 
 ## Docker container support

@@ -19,7 +19,7 @@ test('teams-logger', async (assert) => {
     const result2 = await execa.node(binPath, ['--help'])
     assert.deepEqual(
         result2.stdout,
-        'teams-logger [message]\n\nPost Markdown to Microsoft Teams\n\nCommands:\n  teams-logger [message]     Post Markdown to Microsoft Teams          [default]\n  teams-logger raw [json]    Post JSON message to Microsoft Teams\n\nPositionals:\n  message  Markdown message.\n\nOptions:\n      --help     Show help                                             [boolean]\n      --version  Show version number                                   [boolean]\n  -w, --webhook  Microsoft Teams Webhook [TEAMS_LOGGER_WEBHOOK]       [required]\n  -l, --link     Add link buttons with Markdown syntax [Title](url)      [array]',
+        'teams-logger [message]\n\nPost Markdown to Microsoft Teams\n\nCommands:\n  teams-logger [message]     Post Markdown to Microsoft Teams          [default]\n  teams-logger raw [json]    Post JSON message to Microsoft Teams\n\nPositionals:\n  message  Markdown message.\n\nOptions:\n      --help           Show help                                       [boolean]\n      --version        Show version number                             [boolean]\n  -w, --webhook        Microsoft Teams Webhook [TEAMS_LOGGER_WEBHOOK] [required]\n  -t, --timeout        Timeout in seconds before fail                   [number]\n      --allow-failure  Exit with code 0 when failed   [boolean] [default: false]\n  -l, --link           Add link buttons with Markdown syntax [Title](url)[array]',
         'prints correct help text'
     )
 

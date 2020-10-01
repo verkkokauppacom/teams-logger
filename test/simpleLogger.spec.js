@@ -10,17 +10,24 @@ const simpleLogger = require('../lib/simpleLogger')
 test('simpleLogger', (assert) => {
     assert.plan(4)
 
-    simpleLogger({ message: 'test', webhook: 'https://example.com' })
+    simpleLogger({
+        allowFailure: false,
+        message: 'test',
+        timeout: undefined,
+        webhook: 'https://example.com'
+    })
 
     assert.true(rawLogger.calledOnce, 'called exactly once')
 
     assert.true(
         rawLogger.calledOnceWith({
+            allowFailure: false,
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
                 text: 'test'
             },
+            timeout: undefined,
             webhook: 'https://example.com'
         }),
         'called with correct arguments'
@@ -29,8 +36,10 @@ test('simpleLogger', (assert) => {
     rawLogger.resetHistory()
 
     simpleLogger({
+        allowFailure: true,
         links: [{ label: 'label', href: 'href' }],
         message: 'test',
+        timeout: 30,
         webhook: 'https://example.com'
     })
 
@@ -38,6 +47,7 @@ test('simpleLogger', (assert) => {
 
     assert.true(
         rawLogger.calledOnceWith({
+            allowFailure: true,
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
@@ -55,6 +65,7 @@ test('simpleLogger', (assert) => {
                     }
                 ]
             },
+            timeout: 30,
             webhook: 'https://example.com'
         }),
         'called with correct arguments'
