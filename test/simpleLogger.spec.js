@@ -16,7 +16,7 @@ test('simpleLogger', (assert) => {
 
     assert.true(
         rawLogger.calledOnceWith({
-            body: {
+            json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
                 text: 'test'
@@ -38,7 +38,7 @@ test('simpleLogger', (assert) => {
 
     assert.true(
         rawLogger.calledOnceWith({
-            body: {
+            json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
                 text: 'test',

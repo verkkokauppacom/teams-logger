@@ -1,21 +1,23 @@
 const sinon = require('sinon')
-const testdouble = require('testdouble')
+const td = require('testdouble')
 const test = require('tape')
 
-const bent = sinon.fake.resolves('ok')
-testdouble.replace('bent', () => bent)
+const got = { post: sinon.fake.resolves('ok') }
+td.replace('got', got)
 
 const { rawLogger } = require('../')
 
 test('rawLogger', (assert) => {
     assert.plan(2)
 
-    rawLogger({ body: { foo: 'bar' }, webhook: 'https://example.com' })
+    rawLogger({ json: { foo: 'bar' }, webhook: 'https://example.com' })
 
-    assert.true(bent.calledOnce, 'called exactly once')
+    assert.true(got.post.calledOnce, 'called exactly once')
 
     assert.true(
-        bent.calledOnceWith('https://example.com', { foo: 'bar' }),
+        got.post.calledOnceWith('https://example.com', {
+            json: { foo: 'bar' }
+        }),
         'called with correct arguments'
     )
 })
