@@ -98,7 +98,7 @@ rawLogger({ allowFailure, json, timeout, webhook })
  *
  * @param {Object} options
  * @param {boolean} [options.allowFailure] - Whether to exit with code 0 even when request failed
- * @param {Array<string>} [options.links] - Link buttons in the Markdown format `[Label](url)`
+ * @param {Array<Object>} [options.links] - Link buttons f.e. [{label: 'verkkokauppacom/teams-logger', href: 'https://github.com/verkkokauppacom/teams-logger'}]
  * @param {String} options.message - Message formatted in Markdown
  * @param {Number} [options.timeout] - HTTP Request timeout
  * @param {String} options.webhook - Office 365 Incoming Webhook URL
