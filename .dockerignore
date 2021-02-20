@@ -1,5 +1,4 @@
-*
-!bin/*
-!lib/*
-!index.ts
-!package*.json
+.nyc_output
+coverage
+node_modules
+test
