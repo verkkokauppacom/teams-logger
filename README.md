@@ -36,7 +36,7 @@ The simple usage is to post messages formatted in Markdown, with optional link b
 
 ## Configuration
 
-The only required configuration is the Webhook URL for posting messages a to a certain channel. After creating a Webhook connector to a channel, save its webhook URL and specify it to `teams-logger` via the `TEAMS_LOGGER_WEBHOOK` env variable or the `--webhook` command line flag.
+The only required configuration is the Webhook URL for posting messages to a certain channel. After creating a Webhook connector to a channel, save its webhook URL and specify it to `teams-logger` via the `TEAMS_LOGGER_WEBHOOK` env variable or the `--webhook` command line flag.
 
 ## Usage
 
