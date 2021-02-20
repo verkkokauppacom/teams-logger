@@ -1,5 +1,5 @@
 /** Coerce stringified JSON into object */
-const coerceJson = (json: unknown): Record<string, any> => {
+const coerceJson = (json: unknown): SerializableObject => {
     try {
         return JSON.parse(json as string)
     } catch (error) {

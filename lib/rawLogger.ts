@@ -4,7 +4,7 @@ import got from 'got'
 
 interface Args {
     allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
-    json: Record<string, any> /** JSON Message */
+    json: SerializableObject /** JSON Message */
     timeout?: number /** HTTP Request timeout in seconds */
     webhook: string /** Office 365 Incoming Webhook URL */
 }

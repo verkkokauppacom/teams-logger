@@ -7,9 +7,9 @@ import type { Link } from './coerceLinks'
  * @returns {Object} - Office 365 Connector JSON
  */
 const addPotentialActions = (
-    message: Record<string, any> = {},
+    message: SerializableObject = {},
     links: Link[] = []
-): Record<string, any> => {
+): SerializableObject => {
     if (!Array.isArray(links)) {
         throw 'Links is not an array!'
     }

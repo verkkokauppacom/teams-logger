@@ -20,7 +20,7 @@ const simpleLogger = async ({
     timeout = 5,
     webhook
 }: Args): Promise<Response<unknown> | undefined> => {
-    let json: Record<string, any> = {
+    let json: SerializableObject = {
         '@type': 'MessageCard',
         '@context': 'http://schema.org/extensions',
         text: message
