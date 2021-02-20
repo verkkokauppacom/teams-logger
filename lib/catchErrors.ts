@@ -1,9 +1,9 @@
 const catchErrors = async (
-    promise: Promise<unknown>,
+    asyncFn: () => Promise<unknown>,
     allowFailure = false
 ): Promise<void> => {
     try {
-        await promise
+        await asyncFn()
     } catch (error) {
         console.error(error.message ? error.message : error)
 

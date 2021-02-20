@@ -14,6 +14,6 @@ const commandRaw = ({
     timeout,
     webhook
 }: RawArgs): Promise<void> =>
-    catchErrors(rawLogger({ json, timeout, webhook }), allowFailure)
+    catchErrors(() => rawLogger({ json, timeout, webhook }), allowFailure)
 
 export default commandRaw

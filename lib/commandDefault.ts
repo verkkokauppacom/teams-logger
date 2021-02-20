@@ -21,12 +21,13 @@ const commandDefault = ({
     webhook
 }: DefaultArgs): Promise<void> =>
     catchErrors(
-        simpleLogger({
-            links: link,
-            message,
-            timeout,
-            webhook
-        }),
+        () =>
+            simpleLogger({
+                links: link,
+                message,
+                timeout,
+                webhook
+            }),
         allowFailure
     )
 
