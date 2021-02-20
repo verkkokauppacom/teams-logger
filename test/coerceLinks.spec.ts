@@ -1,6 +1,6 @@
-const test = require('tape')
+import test from 'tape'
 
-const coerceLinks = require('../lib/coerceLinks')
+import coerceLinks from '../lib/coerceLinks.ts'
 
 test('coerceLinks', (assert) => {
     assert.plan(4)

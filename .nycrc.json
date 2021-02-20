@@ -1,0 +1,17 @@
+{
+  "extension": [
+      ".ts"
+  ],
+  "require": [
+      "ts-node/register/transpile-only"
+  ],
+  "include": [
+    "bin/*.ts",
+    "lib/*.ts"
+  ],
+  "reporter": [
+      "text",
+      "lcov"
+  ],
+  "cache": false
+}

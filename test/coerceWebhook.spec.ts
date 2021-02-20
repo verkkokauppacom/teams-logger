@@ -1,6 +1,6 @@
-const test = require('tape')
+import test from 'tape'
 
-const coerceWebhook = require('../lib/coerceWebhook')
+import coerceWebhook from '../lib/coerceWebhook.ts'
 
 test('coerceWebhook', (assert) => {
     assert.plan(2)
@@ -10,7 +10,7 @@ test('coerceWebhook', (assert) => {
 
     assert.throws(
         () => coerceWebhook('https://example.com'),
-        'Invalid webhook!',
+        /Invalid webhook\!/,
         'throws when invalid webhook URL'
     )
 })

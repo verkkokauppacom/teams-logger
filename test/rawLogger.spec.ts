@@ -1,16 +1,16 @@
-const sinon = require('sinon')
-const td = require('testdouble')
-const test = require('tape')
+import sinon from 'sinon'
+import td from 'testdouble'
+import test from 'tape'
 
 const got = { post: sinon.fake.resolves('ok') }
 td.replace('got', got)
 
-const { rawLogger } = require('../')
+import rawLogger from '../lib/rawLogger.ts'
 
-test('rawLogger', (assert) => {
+test('rawLogger', async (assert) => {
     assert.plan(2)
 
-    rawLogger({
+    await rawLogger({
         allowFailure: false,
         json: { foo: 'bar' },
         webhook: 'https://example.com',

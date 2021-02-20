@@ -18,8 +18,10 @@
         "lib/*.js"
     ],
     "scripts": {
-        "lint": "prettier --check **/*.js",
-        "test": "nyc -r=lcov -r=text-summary tape test/**/*.spec.js",
+        "lint:base": "eslint --ext .js,.ts",
+        "lint": "npm run lint:base .",
+        "build": "tsc --build tsconfig.json",
+        "test": "nyc tape test/**/*.spec.ts",
         "version": "standard-version --no-verify"
     },
     "nyc": {
@@ -38,11 +40,11 @@
         }
     },
     "lint-staged": {
-        "*.{js,json}": "prettier --write"
+        "*.{js,json}": "lint:base --fix"
     },
     "standard-version": {
         "scripts": {
-            "prerelease": "npm run lint && npm test"
+            "prerelease": "npm run lint:base && npm test"
         }
     },
     "dependencies": {
@@ -52,7 +54,19 @@
     },
     "devDependencies": {
         "@commitlint/config-conventional": "^11.0.0",
+        "@types/sinon": "9.0.10",
+        "@types/tape": "4.13.0",
+        "@types/yargs": "16.0.0",
+        "@typescript-eslint/eslint-plugin": "^4.15.1",
+        "@typescript-eslint/parser": "^4.15.1",
         "commitlint": "^11.0.0",
+        "eslint": "^7.20.0",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jest": "^24.1.5",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-promise": "^4.3.1",
         "execa": "^5.0.0",
         "husky": "^4.3.8",
         "lint-staged": "^10.5.4",
@@ -61,7 +75,9 @@
         "sinon": "^9.2.4",
         "standard-version": "^9.1.1",
         "tape": "^5.1.1",
-        "testdouble": "^3.16.1"
+        "testdouble": "^3.16.1",
+        "ts-node": "9.1.1",
+        "typescript": "^4.1.5"
     },
     "keywords": [
         "Connector",

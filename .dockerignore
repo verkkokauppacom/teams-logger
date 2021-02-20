@@ -1,5 +1,5 @@
 *
 !bin/*
 !lib/*
-!index.js
+!index.ts
 !package*.json

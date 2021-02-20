@@ -1,6 +1,6 @@
-const test = require('tape')
+import test from 'tape'
 
-const addPotentialActions = require('../lib/addPotentialActions')
+import addPotentialActions from '../lib/addPotentialActions.ts'
 
 test('addPotentialActions', (assert) => {
     assert.plan(6)
@@ -39,11 +39,13 @@ test('addPotentialActions', (assert) => {
     )
 
     assert.throws(
+        /** @ts-expect-error: handles incorrect value */
         () => addPotentialActions({}, {}),
         'throws when links not an array'
     )
 
     assert.throws(
+        /** @ts-expect-error: handles incorrect value */
         () => addPotentialActions({}, ['test']),
         'throws when links are invalid'
     )

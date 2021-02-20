@@ -1,16 +1,16 @@
-const sinon = require('sinon')
-const testdouble = require('testdouble')
-const test = require('tape')
+import sinon from 'sinon'
+import testdouble from 'testdouble'
+import test from 'tape'
 
 const rawLogger = sinon.fake()
 testdouble.replace('../lib/rawLogger', rawLogger)
 
-const simpleLogger = require('../lib/simpleLogger')
+import simpleLogger from '../lib/simpleLogger.ts'
 
-test('simpleLogger', (assert) => {
+test('simpleLogger', async (assert) => {
     assert.plan(4)
 
-    simpleLogger({
+    await simpleLogger({
         allowFailure: false,
         message: 'test',
         timeout: undefined,
@@ -27,7 +27,7 @@ test('simpleLogger', (assert) => {
                 '@context': 'http://schema.org/extensions',
                 text: 'test'
             },
-            timeout: undefined,
+            timeout: 5,
             webhook: 'https://example.com'
         }),
         'called with correct arguments'

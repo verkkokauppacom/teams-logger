@@ -1,10 +1,15 @@
+import type { Link } from './coerceLinks'
+
 /**
  * Add Office 365 Connector message OpenUri actions to JSON message
  * @param {Object} message - Office 365 Connector JSON
  * @param {Array<[string, string]>} links - Parsed links as `[label, url]` tuples
  * @returns {Object} - Office 365 Connector JSON
  */
-module.exports = (message = {}, links = []) => {
+const addPotentialActions = (
+    message: Record<string, any> = {},
+    links: Link[] = []
+): Record<string, any> => {
     if (!Array.isArray(links)) {
         throw 'Links is not an array!'
     }
@@ -32,3 +37,5 @@ module.exports = (message = {}, links = []) => {
 
     return { ...message, potentialAction }
 }
+
+export default addPotentialActions

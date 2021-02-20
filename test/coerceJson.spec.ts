@@ -1,6 +1,6 @@
-const test = require('tape')
+import test from 'tape'
 
-const coerceJson = require('../lib/coerceJson')
+import coerceJson from '../lib/coerceJson.ts'
 
 test('coerceJson', (assert) => {
     assert.plan(2)
@@ -12,8 +12,9 @@ test('coerceJson', (assert) => {
     )
 
     assert.throws(
+        /** @ts-expect-error: handles incorrect value */
         () => coerceJson(),
-        'Unable to parse JSON!',
+        /Unable to parse JSON\!/,
         'throws when invalid JSON'
     )
 })

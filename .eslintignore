@@ -2,7 +2,7 @@
 /coverage
 /node_modules
 
-/.npmrc
 /index.js
+/test-require.js
 /bin/*.js
 /lib/*.js

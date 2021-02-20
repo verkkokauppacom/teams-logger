@@ -1,23 +1,38 @@
 #!/usr/bin/env node
 
-'use strict'
+import { load } from 'pipe-args'
+import yargs from 'yargs'
 
-require('pipe-args').load()
-
-const pkg = require('../package.json')
-
-const coerceJson = require('../lib/coerceJson')
-const coerceLinks = require('../lib/coerceLinks')
-const coerceWebhook = require('../lib/coerceWebhook')
-
-const { rawLogger, simpleLogger } = require('../')
+import { version } from '../package.json'
+import coerceJson from '../lib/coerceJson'
+import coerceLinks from '../lib/coerceLinks'
+import coerceWebhook from '../lib/coerceWebhook'
+import rawLogger from '../lib/rawLogger'
+import simpleLogger from '../lib/simpleLogger'
 
 const ENV_PREFIX = 'TEAMS_LOGGER'
 
-require('yargs')
+load()
+
+interface Args {
+    webhook: string
+    timeout?: number
+    allowFailure?: boolean
+}
+
+interface DefaultArgs extends Args {
+    link: ReturnType<typeof coerceLinks>
+    message: string
+}
+
+interface RawArgs extends Args {
+    json: ReturnType<typeof coerceJson>
+}
+
+yargs
     .env(ENV_PREFIX)
     .scriptName('teams-logger')
-    .version(pkg.version)
+    .version(version)
     .option('webhook', {
         alias: 'w',
         describe: `Microsoft Teams Webhook [${ENV_PREFIX}_WEBHOOK]`,
@@ -34,7 +49,7 @@ require('yargs')
         type: 'boolean',
         default: false
     })
-    .command(
+    .command<DefaultArgs>(
         '* [message]',
         'Post Markdown to Microsoft Teams',
         (yargs) => {
@@ -49,7 +64,7 @@ require('yargs')
                 .positional('message', {
                     describe: 'Markdown message.',
                     require: true,
-                    type: 'markdown'
+                    type: 'string'
                 })
         },
         ({ allowFailure, link, message, timeout, webhook }) =>
@@ -61,14 +76,14 @@ require('yargs')
                 webhook
             })
     )
-    .command(
+    .command<RawArgs>(
         'raw [json]',
         'Post JSON message to Microsoft Teams',
         (yargs) => {
             yargs.positional('json', {
                 describe: 'Valid Microsoft Teams JSON message.',
                 require: true,
-                type: 'json',
+                type: 'string',
                 coerce: coerceJson
             })
         },
