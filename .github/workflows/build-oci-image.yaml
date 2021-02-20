@@ -18,7 +18,7 @@ jobs:
       - uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ github.repository_owner }}/teams-logger
-          tags: latest ${{ github.sha }}
+          tags: latest
           base-image: node:alpine
           oci: true
           dockerfiles: |
