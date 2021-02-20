@@ -78,33 +78,27 @@ cat my_json_message.json | teams-logger raw
 
 `teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
 
-```js
-const { rawLogger, simpleLogger } = require('@verkkokauppacom/teams-logger')
+```ts
+import { rawLogger, simpleLogger } from '@verkkokauppacom/teams-logger'
 
-/**
- * Send raw JSON to Microsoft Teams
- *
- * @param {Object} options
- * @param {boolean} [options.allowFailure] - Whether to exit with code 0 even when request failed
- * @param {JSON} options.json - JSON Message
- * @param {Number} [options.timeout] - HTTP Request timeout in seconds
- * @param {string} options.webhook - Office 365 Incoming Webhook URL
- * @returns {Promise} - Response
- */
-rawLogger({ allowFailure, json, timeout, webhook })
+interface RawArgs {
+    allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
+    json: SerializableObject /** JSON Message as JavaScript object */
+    timeout?: number /** HTTP Request timeout in seconds */
+    webhook: string /** Office 365 Incoming Webhook URL */
+}
 
-/**
- * Send Markdown message to Microsoft Teams
- *
- * @param {Object} options
- * @param {boolean} [options.allowFailure] - Whether to exit with code 0 even when request failed
- * @param {Array<string>} [options.links] - Link buttons in the Markdown format `[Label](url)`
- * @param {String} options.message - Message formatted in Markdown
- * @param {Number} [options.timeout] - HTTP Request timeout
- * @param {String} options.webhook - Office 365 Incoming Webhook URL
- * @returns {Promise} - Response
- */
-simpleLogger({ allowFailure, links, message, timeout, webhook })
+await rawLogger({ allowFailure, json, timeout, webhook }: RawArgs)
+
+interface SimpleArgs {
+    allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
+    links?: { label: string; href: string }[] /** Link buttons to add to the message */
+    message: string /** Message formatted in Markdown */
+    timeout?: number /** HTTP Request timeout */
+    webhook: string /** Office 365 Incoming Webhook URL */
+}
+
+await simpleLogger({ allowFailure, links, message, timeout, webhook }: SimpleArgs)
 ```
 
 ## Docker container support

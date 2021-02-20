@@ -6,7 +6,7 @@ import rawLogger from './rawLogger'
 
 interface Args {
     allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
-    links?: Link[] /** Link buttons in the Markdown format `[Label](url)` */
+    links?: Link[] /** Link buttons to add to the message */
     message: string /** Message formatted in Markdown */
     timeout?: number /** HTTP Request timeout */
     webhook: string /** Office 365 Incoming Webhook URL */
