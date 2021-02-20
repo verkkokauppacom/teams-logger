@@ -1,5 +1,6 @@
 import test from 'tape'
 
+/** @ts-expect-error - explicit .ts file for coverage calculation */
 import coerceWebhook from '../lib/coerceWebhook.ts'
 
 test('coerceWebhook', (assert) => {

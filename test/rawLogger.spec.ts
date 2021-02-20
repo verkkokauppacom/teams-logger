@@ -5,6 +5,7 @@ import test from 'tape'
 const got = { post: sinon.fake.resolves('ok') }
 td.replace('got', got)
 
+/** @ts-expect-error - explicit .ts file for coverage calculation */
 import rawLogger from '../lib/rawLogger.ts'
 
 test('rawLogger', async (assert) => {

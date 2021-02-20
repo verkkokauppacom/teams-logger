@@ -1,5 +1,6 @@
 import test from 'tape'
 
+/** @ts-expect-error - explicit .ts file for coverage calculation */
 import coerceJson from '../lib/coerceJson.ts'
 
 test('coerceJson', (assert) => {
@@ -12,7 +13,6 @@ test('coerceJson', (assert) => {
     )
 
     assert.throws(
-        /** @ts-expect-error: handles incorrect value */
         () => coerceJson(),
         /Unable to parse JSON\!/,
         'throws when invalid JSON'

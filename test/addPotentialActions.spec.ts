@@ -1,5 +1,6 @@
 import test from 'tape'
 
+/** @ts-expect-error - explicit .ts file for coverage calculation */
 import addPotentialActions from '../lib/addPotentialActions.ts'
 
 test('addPotentialActions', (assert) => {
@@ -39,13 +40,11 @@ test('addPotentialActions', (assert) => {
     )
 
     assert.throws(
-        /** @ts-expect-error: handles incorrect value */
         () => addPotentialActions({}, {}),
         'throws when links not an array'
     )
 
     assert.throws(
-        /** @ts-expect-error: handles incorrect value */
         () => addPotentialActions({}, ['test']),
         'throws when links are invalid'
     )

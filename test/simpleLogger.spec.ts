@@ -5,6 +5,7 @@ import test from 'tape'
 const rawLogger = sinon.fake()
 testdouble.replace('../lib/rawLogger', rawLogger)
 
+/** @ts-expect-error - explicit .ts file for coverage calculation */
 import simpleLogger from '../lib/simpleLogger.ts'
 
 test('simpleLogger', async (assert) => {
