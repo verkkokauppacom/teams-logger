@@ -1,12 +1,35 @@
 # `@verkkokauppacom/teams-logger`
 
+A Node.js application for sending messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
+
+The simple usage is to post messages formatted in Markdown, with optional link buttons that are added to the bottom of messages. More advanced usage is possible by sending the entire [Office 365 Connector JSON](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#creating-messages-through-office-365-connectors).
+
+## Table of contents
+
+1. [Installation](#Installation)
+1. [Usage](#Usage)
+    1. [Configuration](#Configuration)
+    1. [Simple CLI](#Simple%20CLI)
+    1. [Advanced CLI](#Advanced%20CLI)
+    1. [Node.js API](#Node.js%20API)
+    1. [Docker](#Docker)
+1. [Development](#Development)
+    1. [Publishing](#Publishing)
+
+## Installation
+
 ```bash
 # npm
 npm install --global @verkkokauppacom/teams-logger
 
 # yarn
 yarn add --global @verkkokauppacom/teams-logger
+
+# Docker
+docker pull ghcr.io/verkkokauppacom/teams-logger
 ```
+
+## Usage
 
 ```bash
 ❯ npx teams-logger --help
@@ -30,17 +53,12 @@ Options:
   -l, --link           Add link buttons with Markdown syntax [Title](url)[array]
 ```
 
-Send messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
-
-The simple usage is to post messages formatted in Markdown, with optional link buttons that are added to the bottom of messages. More advanced usage is possible by sending the entire [Office 365 Connector JSON](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#creating-messages-through-office-365-connectors).
-
-## Configuration
+### Configuration
 
 The only required configuration is the Webhook URL for posting messages to a certain channel. After creating a Webhook connector to a channel, save its webhook URL and specify it to `teams-logger` via the `TEAMS_LOGGER_WEBHOOK` env variable or the `--webhook` command line flag.
 
-## Usage
 
-### Simple
+### Simple CLI
 
 Post a message to a channel:
 
@@ -65,7 +83,7 @@ Add Link button to a message:
 teams-logger "Click the button\!" --button "[The Button](https://example.com)" --webhook "https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 ```
 
-### Advanced
+### Advanced CLI
 
 You can learn how to create custom messages by following the [Post an actionable message card to an Office 365 group](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors) tutorial:
 
@@ -74,7 +92,7 @@ export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
 cat my_json_message.json | teams-logger raw
 ```
 
-### Node API
+### Node.js API
 
 `teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
 
@@ -101,13 +119,15 @@ interface SimpleArgs {
 await simpleLogger({ allowFailure, links, message, timeout, webhook }: SimpleArgs)
 ```
 
-## Docker container support
+### Docker
 
 This repository contains a `Dockerfile` for building a small image based on [node:alpine](https://hub.docker.com/_/node/). The API of the container is the same as the cli:
 
 ```bash
 ❯ docker run ghcr.io/verkkokauppacom/teams-logger --help
 ```
+
+## Development
 
 ### Publishing
 
