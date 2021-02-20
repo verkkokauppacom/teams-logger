@@ -17,7 +17,7 @@ const parseLink = (string: string): Link => {
         const [, label, href] = MARKDOWN_LINK.exec(string)!
         return { label, href }
     } catch (error) {
-        throw 'Error parsing link!'
+        throw new Error('Error parsing link!')
     }
 }
 
@@ -29,7 +29,7 @@ const parseLink = (string: string): Link => {
  */
 const coerceLinks = (links: unknown = []): Link[] => {
     if (!Array.isArray(links)) {
-        throw 'Links is not an array!'
+        throw new Error('Links is not an array!')
     }
 
     return links.map(parseLink)

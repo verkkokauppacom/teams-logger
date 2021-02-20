@@ -10,7 +10,7 @@ const coerceWebhook = (webhook: unknown): string => {
     if (typeof webhook === 'string' && WEBHOOK_PREFIX.test(webhook)) {
         return webhook
     } else {
-        throw 'Invalid webhook!'
+        throw new Error('Invalid webhook!')
     }
 }
 

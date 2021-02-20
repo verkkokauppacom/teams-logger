@@ -11,7 +11,7 @@ const addPotentialActions = (
     links: Link[] = []
 ): SerializableObject => {
     if (!Array.isArray(links)) {
-        throw 'Links is not an array!'
+        throw new Error('Links is not an array!')
     }
 
     if (links.length === 0) {
@@ -20,7 +20,7 @@ const addPotentialActions = (
 
     const potentialAction = links.map(({ label, href }) => {
         if (!(typeof label === 'string' && typeof href === 'string')) {
-            throw 'Error parsing links!'
+            throw new Error('Error parsing links!')
         }
 
         return {
