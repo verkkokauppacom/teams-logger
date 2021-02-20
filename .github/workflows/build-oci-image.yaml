@@ -1,0 +1,25 @@
+name: Build OCI Image
+
+on:
+  pull_request:
+    branches:
+    - "*"
+  push:
+    branches:
+    - "*"
+    tags-ignore:
+    - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ github.repository_owner }}/teams-logger
+          tags: latest ${{ github.sha }}
+          base-image: node:alpine
+          oci: true
+          dockerfiles: |
+            ./Dockerfile

@@ -112,13 +112,8 @@ simpleLogger({ allowFailure, links, message, timeout, webhook })
 This repository contains a `Dockerfile` for building a small image based on [node:alpine](https://hub.docker.com/_/node/). The API of the container is the same as the cli:
 
 ```bash
-❯ docker build --tag teams-logger .
-❯ docker run teams-logger --help
+❯ docker run ghcr.io/verkkokauppacom/teams-logger --help
 ```
-
-## Development
-
-Todo at this point...
 
 ### Publishing
 
@@ -126,5 +121,5 @@ This project adheres to the [Conventional Commits specification](https://www.con
 
 1. Run `npm run version` locally, and wait for the script to run
 1. If all prerelease checks pass, a new commit containing the version number bump, `CHANGELOG.md` and git tag will be created
-1. Push the new commit to git by running `git push --follow-tags`
-1. Publish a new release to npm by running `npm publish`
+1. Push the new commit and tag by running `git push --follow-tags`
+1. The [GitHub Actions](https://github.com/verkkokauppacom/teams-logger/actions/new) will take over and publish new npm packages and Docker images

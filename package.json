@@ -15,7 +15,8 @@
     },
     "files": [
         "bin/teams-logger.js",
-        "lib/*.js"
+        "lib/*.js",
+        "index.js"
     ],
     "scripts": {
         "lint:base": "eslint --ext .js,.ts",
