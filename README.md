@@ -1,5 +1,10 @@
 # `@verkkokauppacom/teams-logger`
 
+[![@verkkokauppacom/teams-logger version](https://img.shields.io/npm/v/@verkkokauppacom/teams-logger)](https://www.npmjs.com/package/@verkkokauppacom/teams-logger)
+[![@verkkokauppacom/teams-logger monthly downloads](https://img.shields.io/npm/dm/@verkkokauppacom/teams-logger)](https://www.npmjs.com/package/@verkkokauppacom/teams-logger)
+[![@verkkokauppacom/teams-logger dependency status](https://img.shields.io/librariesio/release/npm/@verkkokauppacom/teams-logger)](https://github.com/verkkokauppacom/teams-logger)
+[![@verkkokauppacom/teams-logger GitHub Stars](https://img.shields.io/github/stars/verkkokauppacom/teams-logger?label=GitHub%20Stars)](https://github.com/verkkokauppacom/teams-logger/stargazers)
+
 A Node.js application for sending messages to Microsoft Teams via a [custom incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook).
 
 The simple usage is to post messages formatted in Markdown, with optional link buttons that are added to the bottom of messages. More advanced usage is possible by sending the entire [Office 365 Connector JSON](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#creating-messages-through-office-365-connectors).
