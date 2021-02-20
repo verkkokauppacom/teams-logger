@@ -9,10 +9,9 @@ td.replace('got', got)
 import rawLogger from '../lib/rawLogger.ts'
 
 test('rawLogger', async (assert) => {
-    assert.plan(2)
+    assert.plan(3)
 
     await rawLogger({
-        allowFailure: false,
         json: { foo: 'bar' },
         webhook: 'https://example.com',
         timeout: 30
@@ -27,4 +26,13 @@ test('rawLogger', async (assert) => {
         }),
         'called with correct arguments'
     )
+
+    got.post.resetHistory()
+
+    await rawLogger({
+        json: { foo: 'bar' },
+        webhook: 'https://example.com'
+    })
+
+    assert.true(got.post.calledOnce, 'called exactly once')
 })

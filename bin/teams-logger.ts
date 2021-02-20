@@ -7,27 +7,12 @@ import { version } from '../package.json'
 import coerceJson from '../lib/coerceJson'
 import coerceLinks from '../lib/coerceLinks'
 import coerceWebhook from '../lib/coerceWebhook'
-import rawLogger from '../lib/rawLogger'
-import simpleLogger from '../lib/simpleLogger'
+import commandDefault from '../lib/commandDefault'
+import commandRaw from '../lib/commandRaw'
 
 const ENV_PREFIX = 'TEAMS_LOGGER'
 
 load()
-
-interface Args {
-    webhook: string
-    timeout?: number
-    allowFailure?: boolean
-}
-
-interface DefaultArgs extends Args {
-    link: ReturnType<typeof coerceLinks>
-    message: string
-}
-
-interface RawArgs extends Args {
-    json: ReturnType<typeof coerceJson>
-}
 
 yargs
     .env(ENV_PREFIX)
@@ -49,7 +34,7 @@ yargs
         type: 'boolean',
         default: false
     })
-    .command<DefaultArgs>(
+    .command(
         '* [message]',
         'Post Markdown to Microsoft Teams',
         (yargs) => {
@@ -67,16 +52,9 @@ yargs
                     type: 'string'
                 })
         },
-        ({ allowFailure, link, message, timeout, webhook }) =>
-            simpleLogger({
-                allowFailure,
-                links: link,
-                message,
-                timeout,
-                webhook
-            })
+        commandDefault
     )
-    .command<RawArgs>(
+    .command(
         'raw [json]',
         'Post JSON message to Microsoft Teams',
         (yargs) => {
@@ -87,6 +65,5 @@ yargs
                 coerce: coerceJson
             })
         },
-        ({ allowFailure, json, timeout, webhook }) =>
-            rawLogger({ allowFailure, json, timeout, webhook })
+        commandRaw
     ).argv

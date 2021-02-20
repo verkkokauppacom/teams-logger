@@ -5,7 +5,6 @@ import addPotentialActions from './addPotentialActions'
 import rawLogger from './rawLogger'
 
 interface Args {
-    allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
     links?: Link[] /** Link buttons to add to the message */
     message: string /** Message formatted in Markdown */
     timeout?: number /** HTTP Request timeout */
@@ -13,13 +12,12 @@ interface Args {
 }
 
 /** Send Markdown message to Microsoft Teams */
-const simpleLogger = async ({
-    allowFailure = false,
+const simpleLogger = ({
     links = [],
     message,
     timeout = 5,
     webhook
-}: Args): Promise<Response<unknown> | undefined> => {
+}: Args): Promise<Response> => {
     let json: SerializableObject = {
         '@type': 'MessageCard',
         '@context': 'http://schema.org/extensions',
@@ -30,7 +28,7 @@ const simpleLogger = async ({
         json = addPotentialActions(json, links)
     }
 
-    return rawLogger({ allowFailure, json, timeout, webhook })
+    return rawLogger({ json, timeout, webhook })
 }
 
 export default simpleLogger

@@ -102,16 +102,7 @@ cat my_json_message.json | teams-logger raw
 `teams-logger` can be used through Node.js via the exported `simpleLogger` or `rawLogger`:
 
 ```ts
-import { rawLogger, simpleLogger } from '@verkkokauppacom/teams-logger'
-
-interface RawArgs {
-    allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
-    json: SerializableObject /** JSON Message as JavaScript object */
-    timeout?: number /** HTTP Request timeout in seconds */
-    webhook: string /** Office 365 Incoming Webhook URL */
-}
-
-await rawLogger({ allowFailure, json, timeout, webhook }: RawArgs)
+import { simpleLogger } from '@verkkokauppacom/teams-logger'
 
 interface SimpleArgs {
     allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
@@ -121,7 +112,28 @@ interface SimpleArgs {
     webhook: string /** Office 365 Incoming Webhook URL */
 }
 
-await simpleLogger({ allowFailure, links, message, timeout, webhook }: SimpleArgs)
+try {
+    await simpleLogger({ allowFailure, links, message, timeout, webhook }: SimpleArgs)
+} catch (error) {
+    console.error(error)
+}
+```
+
+```ts
+import { rawLogger } from '@verkkokauppacom/teams-logger'
+
+interface RawArgs {
+    allowFailure?: boolean /** Whether to exit with code 0 even when request failed */
+    json: SerializableObject /** JSON Message as JavaScript object */
+    timeout?: number /** HTTP Request timeout in seconds */
+    webhook: string /** Office 365 Incoming Webhook URL */
+}
+
+try {
+    await rawLogger({ allowFailure, json, timeout, webhook }: RawArgs)
+} catch (error) {
+    console.error(error)
+}
 ```
 
 ### Docker

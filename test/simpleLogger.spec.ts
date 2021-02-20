@@ -12,7 +12,6 @@ test('simpleLogger', async (assert) => {
     assert.plan(4)
 
     await simpleLogger({
-        allowFailure: false,
         message: 'test',
         timeout: undefined,
         webhook: 'https://example.com'
@@ -22,7 +21,6 @@ test('simpleLogger', async (assert) => {
 
     assert.true(
         rawLogger.calledOnceWith({
-            allowFailure: false,
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
@@ -37,7 +35,6 @@ test('simpleLogger', async (assert) => {
     rawLogger.resetHistory()
 
     simpleLogger({
-        allowFailure: true,
         links: [{ label: 'label', href: 'href' }],
         message: 'test',
         timeout: 30,
@@ -48,7 +45,6 @@ test('simpleLogger', async (assert) => {
 
     assert.true(
         rawLogger.calledOnceWith({
-            allowFailure: true,
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
