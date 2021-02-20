@@ -6,15 +6,15 @@ The simple usage is to post messages formatted in Markdown, with optional link b
 
 ## Table of contents
 
-1. [Installation](#Installation)
-1. [Usage](#Usage)
-    1. [Configuration](#Configuration)
-    1. [Simple CLI](#Simple%20CLI)
-    1. [Advanced CLI](#Advanced%20CLI)
-    1. [Node.js API](#Node.js%20API)
-    1. [Docker](#Docker)
-1. [Development](#Development)
-    1. [Publishing](#Publishing)
+1. [Installation](#installation)
+1. [Usage](#usage)
+    1. [Configuration](#configuration)
+    1. [Simple CLI](#simple-cli)
+    1. [Advanced CLI](#advanced-cli)
+    1. [Node.js API](#nodejs-api)
+    1. [Docker](#docker)
+1. [Development](#development)
+    1. [Publishing](#publishing)
 
 ## Installation
 
