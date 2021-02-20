@@ -14,10 +14,14 @@
         "teams-logger": "bin/teams-logger.js"
     },
     "files": [
+        "bin/teams-logger.d.ts",
         "bin/teams-logger.js",
+        "lib/*.d.ts",
         "lib/*.js",
+        "index.d.ts",
         "index.js"
     ],
+    "types": "index.d.ts",
     "scripts": {
         "lint:base": "eslint --ext .js,.ts",
         "lint": "npm run lint:base .",

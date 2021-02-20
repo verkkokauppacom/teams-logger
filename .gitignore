@@ -6,3 +6,6 @@
 /index.js
 /bin/*.js
 /lib/*.js
+
+*.d.ts
+!types/**/*.d.ts
