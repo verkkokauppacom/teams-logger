@@ -1,26 +1,25 @@
-import sinon from 'sinon'
-import testdouble from 'testdouble'
-import test from 'tape'
+import simpleLogger from '../lib/simpleLogger'
+import rawLogger from '../lib/rawLogger'
 
-const rawLogger = sinon.fake()
-testdouble.replace('../lib/rawLogger', rawLogger)
+jest.mock('../lib/rawLogger', () =>
+    jest.fn().mockReturnValue(Promise.resolve())
+)
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import simpleLogger from '../lib/simpleLogger.ts'
+const mockRawLogger = rawLogger as jest.Mock
 
-test('simpleLogger', async (assert) => {
-    assert.plan(4)
-
-    await simpleLogger({
-        message: 'test',
-        timeout: undefined,
-        webhook: 'https://example.com'
+describe('simpleLogger', () => {
+    beforeEach(() => {
+        mockRawLogger.mockClear()
     })
 
-    assert.true(rawLogger.calledOnce, 'called exactly once')
+    it('should call rawLogger with default arguments', async () => {
+        await simpleLogger({
+            message: 'test',
+            webhook: 'https://example.com'
+        })
 
-    assert.true(
-        rawLogger.calledOnceWith({
+        expect(mockRawLogger).toHaveBeenCalledTimes(1)
+        expect(mockRawLogger).toHaveBeenLastCalledWith({
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
@@ -28,23 +27,19 @@ test('simpleLogger', async (assert) => {
             },
             timeout: 5,
             webhook: 'https://example.com'
-        }),
-        'called with correct arguments'
-    )
-
-    rawLogger.resetHistory()
-
-    simpleLogger({
-        links: [{ label: 'label', href: 'href' }],
-        message: 'test',
-        timeout: 30,
-        webhook: 'https://example.com'
+        })
     })
 
-    assert.true(rawLogger.calledOnce, 'called exactly once')
+    it('should call rawLogger with correct arguments', async () => {
+        await simpleLogger({
+            links: [{ label: 'label', href: 'href' }],
+            message: 'test',
+            timeout: 30,
+            webhook: 'https://example.com'
+        })
 
-    assert.true(
-        rawLogger.calledOnceWith({
+        expect(mockRawLogger).toHaveBeenCalledTimes(1)
+        expect(mockRawLogger).toHaveBeenLastCalledWith({
             json: {
                 '@type': 'MessageCard',
                 '@context': 'http://schema.org/extensions',
@@ -64,7 +59,6 @@ test('simpleLogger', async (assert) => {
             },
             timeout: 30,
             webhook: 'https://example.com'
-        }),
-        'called with correct arguments'
-    )
+        })
+    })
 })

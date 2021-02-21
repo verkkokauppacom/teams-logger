@@ -1,18 +1,23 @@
-import sinon from 'sinon'
-import test from 'tape'
+import catchErrors from '../lib/catchErrors'
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import catchErrors from '../lib/catchErrors.ts'
+describe('catchErrors', () => {
+    jest.spyOn(console, 'error').mockImplementation(jest.fn())
 
-test('catchErrors', async (assert) => {
-    assert.plan(3)
+    it('should handle resolve', async () => {
+        await expect(catchErrors(async () => void true)).resolves.toBeFalsy()
+    })
 
-    const sandbox = sinon.createSandbox()
-    sandbox.stub(console, 'error')
+    it('should handle reject', async () => {
+        await expect(
+            catchErrors(async () => {
+                throw new Error()
+            })
+        ).resolves.toBeFalsy()
+    })
 
-    assert.doesNotThrow(() => catchErrors(Promise.resolve()))
-    assert.doesNotThrow(() => catchErrors(Promise.reject(new Error())))
-    assert.doesNotThrow(() =>
-        catchErrors(Promise.reject(new Error('error')), true)
-    )
+    it('should handle reject with allowFailure', async () => {
+        await expect(
+            catchErrors(async () => Promise.reject(new Error('error')), true)
+        ).resolves.toBeFalsy()
+    })
 })

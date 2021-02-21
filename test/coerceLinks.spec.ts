@@ -1,23 +1,25 @@
-import test from 'tape'
+import coerceLinks from '../lib/coerceLinks'
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import coerceLinks from '../lib/coerceLinks.ts'
+describe('coerceLinks', () => {
+    it('should return empty array for no links', () => {
+        expect(coerceLinks()).toEqual([])
+    })
 
-test('coerceLinks', (assert) => {
-    assert.plan(4)
+    it('should parse link to label and href', () => {
+        expect(coerceLinks(['[example.com](https://example.com)'])).toEqual([
+            { label: 'example.com', href: 'https://example.com' }
+        ])
+    })
 
-    assert.deepEqual(coerceLinks(), [], 'returns empty array for no links')
+    it('should throw when links not an array', () => {
+        expect(() => coerceLinks('test')).toThrowErrorMatchingInlineSnapshot(
+            `"Links is not an array!"`
+        )
+    })
 
-    assert.deepEqual(
-        coerceLinks(['[example.com](https://example.com)']),
-        [{ label: 'example.com', href: 'https://example.com' }],
-        'parses link to label and href'
-    )
-
-    assert.throws(() => coerceLinks('test'), 'throws when links not an array')
-
-    assert.throws(
-        () => coerceLinks([{ foo: 'bar' }]),
-        'throws with incorrect link'
-    )
+    it('should throw with incorrect link', () => {
+        expect(() =>
+            coerceLinks([{ foo: 'bar' }])
+        ).toThrowErrorMatchingInlineSnapshot(`"Error parsing link!"`)
+    })
 })

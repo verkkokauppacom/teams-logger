@@ -1,20 +1,16 @@
-import test from 'tape'
+import coerceJson from '../lib/coerceJson'
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import coerceJson from '../lib/coerceJson.ts'
+describe('coerceJson', () => {
+    it('should parse valid JSON', () => {
+        expect(coerceJson('{"foo":"bar"}')).toEqual({
+            foo: 'bar'
+        })
+    })
 
-test('coerceJson', (assert) => {
-    assert.plan(2)
-
-    assert.deepEqual(
-        coerceJson('{"foo":"bar"}'),
-        { foo: 'bar' },
-        'parses valid json'
-    )
-
-    assert.throws(
-        () => coerceJson(),
-        /Unable to parse JSON\!/,
-        'throws when invalid JSON'
-    )
+    it('should throw when invalid JSON', () => {
+        /** @ts-expect-error - invalid argument */
+        expect(() => coerceJson()).toThrowErrorMatchingInlineSnapshot(
+            `"Unable to parse JSON!"`
+        )
+    })
 })

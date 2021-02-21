@@ -1,21 +1,18 @@
-import sinon from 'sinon'
-import testdouble from 'testdouble'
-import test from 'tape'
+jest.mock('../lib/catchErrors', () =>
+    jest.fn().mockReturnValue(Promise.resolve())
+)
 
-const catchErrors = sinon.fake()
-testdouble.replace('../lib/catchErrors', catchErrors)
+import catchErrors from '../lib/catchErrors'
+import commandDefault from '../lib/commandDefault'
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import commandDefault from '../lib/commandDefault.ts'
+describe('commandDefault', () => {
+    it('should call catchErrors', async () => {
+        await commandDefault({
+            link: [],
+            message: 'test',
+            webhook: 'https://example.com'
+        })
 
-test('commandDefault', async (assert) => {
-    assert.plan(1)
-
-    await commandDefault({
-        message: 'test',
-        timeout: undefined,
-        webhook: 'https://example.com'
+        expect(catchErrors).toHaveBeenCalledTimes(1)
     })
-
-    assert.true(catchErrors.calledOnce, 'called exactly once')
 })

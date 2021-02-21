@@ -1,28 +1,22 @@
-import test from 'tape'
+import addPotentialActions from '../lib/addPotentialActions'
 
-/** @ts-expect-error - explicit .ts file for coverage calculation */
-import addPotentialActions from '../lib/addPotentialActions.ts'
+describe('addPotentialActions', () => {
+    it('should default to empty message', () => {
+        expect(addPotentialActions()).toEqual({})
+    })
 
-test('addPotentialActions', (assert) => {
-    assert.plan(6)
+    it('should not modify message without actions', () => {
+        expect(addPotentialActions({})).toEqual({})
+    })
 
-    assert.deepEqual(addPotentialActions(), {}, 'defaults to empty message')
+    it('should not modify message with empty actions', () => {
+        expect(addPotentialActions({}, [])).toEqual({})
+    })
 
-    assert.deepEqual(
-        addPotentialActions({}),
-        {},
-        'does not modify message without actions'
-    )
-
-    assert.deepEqual(
-        addPotentialActions({}, []),
-        {},
-        'does not modify message with empty actions'
-    )
-
-    assert.deepEqual(
-        addPotentialActions({}, [{ label: 'label', href: 'href' }]),
-        {
+    it('should add actions to message', () => {
+        expect(
+            addPotentialActions({}, [{ label: 'label', href: 'href' }])
+        ).toEqual({
             potentialAction: [
                 {
                     '@type': 'OpenUri',
@@ -35,17 +29,20 @@ test('addPotentialActions', (assert) => {
                     ]
                 }
             ]
-        },
-        'adds actions to message'
-    )
+        })
+    })
 
-    assert.throws(
-        () => addPotentialActions({}, {}),
-        'throws when links not an array'
-    )
+    it('should throw when links not an array', () => {
+        expect(() =>
+            /** @ts-expect-error - invalid argument */
+            addPotentialActions({}, {})
+        ).toThrowErrorMatchingInlineSnapshot(`"Links is not an array!"`)
+    })
 
-    assert.throws(
-        () => addPotentialActions({}, ['test']),
-        'throws when links are invalid'
-    )
+    it('should throw when links are invalid', () => {
+        expect(() =>
+            /** @ts-expect-error - invalid argument */
+            addPotentialActions({}, ['test'])
+        ).toThrowErrorMatchingInlineSnapshot(`"Error parsing links!"`)
+    })
 })
