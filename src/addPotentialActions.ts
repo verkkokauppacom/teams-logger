@@ -1,4 +1,5 @@
 import type { Link } from './coerceLinks'
+import type { SerializableObject } from './coerceJson'
 
 /**
  * Add Office 365 Connector message OpenUri actions to JSON message

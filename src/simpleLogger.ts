@@ -1,5 +1,6 @@
 import type { Response } from 'got'
 import type { Link } from './coerceLinks'
+import type { SerializableObject } from './coerceJson'
 
 import addPotentialActions from './addPotentialActions'
 import rawLogger from './rawLogger'

@@ -1,4 +1,5 @@
 import type { Response } from 'got'
+import type { SerializableObject } from './coerceJson'
 
 import got from 'got'
 
