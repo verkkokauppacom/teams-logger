@@ -1,4 +1,4 @@
-import coerceJson from '../lib/coerceJson'
+import coerceJson from '../src/coerceJson'
 
 describe('coerceJson', () => {
     it('should parse valid JSON', () => {

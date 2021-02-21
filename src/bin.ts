@@ -3,13 +3,14 @@
 import { load } from 'pipe-args'
 import yargs from 'yargs'
 
-import { version } from '../package.json'
-import coerceJson from '../lib/coerceJson'
-import coerceLinks from '../lib/coerceLinks'
-import coerceWebhook from '../lib/coerceWebhook'
-import commandDefault from '../lib/commandDefault'
-import commandRaw from '../lib/commandRaw'
+import coerceJson from './coerceJson'
+import coerceLinks from './coerceLinks'
+import coerceWebhook from './coerceWebhook'
+import commandDefault from './commandDefault'
+import commandRaw from './commandRaw'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { version } = require('../package.json')
 const ENV_PREFIX = 'TEAMS_LOGGER'
 
 export const main = (): void => {

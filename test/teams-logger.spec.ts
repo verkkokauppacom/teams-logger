@@ -1,9 +1,10 @@
 import execa from 'execa'
 import path from 'path'
 
-import { version } from '../package.json'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { version } = require('../package.json')
 
-const binPath = path.resolve(process.cwd(), './bin/teams-logger.ts')
+const binPath = path.resolve(process.cwd(), './src/bin.ts')
 
 describe('teams-logger', () => {
     it('should print correct version number', async () => {

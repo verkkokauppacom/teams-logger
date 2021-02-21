@@ -11,21 +11,18 @@
         "node": ">= 10"
     },
     "bin": {
-        "teams-logger": "bin/teams-logger.js"
+        "teams-logger": "bin.js"
     },
     "files": [
-        "bin/teams-logger.d.ts",
-        "bin/teams-logger.js",
-        "lib/*.d.ts",
-        "lib/*.js",
-        "index.d.ts",
-        "index.js"
+        "*.d.ts",
+        "*.js"
     ],
     "types": "index.d.ts",
     "scripts": {
         "lint:base": "eslint --ext .js,.ts",
         "lint": "npm run lint:base .",
-        "build": "tsc --build tsconfig.json",
+        "build": "tsc --build src",
+        "postbuild": "npm-publish-files --force dist",
         "test": "jest --coverage",
         "version": "standard-version --no-verify"
     },
@@ -77,6 +74,7 @@
         "husky": "^4.3.8",
         "jest": "26.6.3",
         "lint-staged": "^10.5.4",
+        "npm-publish-files": "1.2.5",
         "prettier": "^2.2.1",
         "standard-version": "^9.1.1",
         "ts-jest": "26.5.1",

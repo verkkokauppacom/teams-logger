@@ -1,17 +1,17 @@
-jest.mock('../lib/catchErrors', () =>
+jest.mock('../src/rawLogger', () =>
     jest.fn().mockReturnValue(Promise.resolve())
 )
 
-import catchErrors from '../lib/catchErrors'
-import commandRaw from '../lib/commandRaw'
+import rawLogger from '../src/rawLogger'
+import commandRaw from '../src/commandRaw'
 
 describe('commandRaw', () => {
-    it('should call catchErrors', async () => {
+    it('should call rawLogger', async () => {
         await commandRaw({
             json: {},
             webhook: 'https://example.com'
         })
 
-        expect(catchErrors).toHaveBeenCalledTimes(1)
+        expect(rawLogger).toHaveBeenCalledTimes(1)
     })
 })

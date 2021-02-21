@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "lib": ["es6"],
     "moduleResolution": "node",
+    "noEmit": true,
     "noResolve": false,
     "noUnusedParameters": true,
     "pretty": true,
@@ -12,9 +13,8 @@
     "target": "es5"
   },
   "include": [
-    "index.ts",
-    "bin/teams-logger.ts",
-    "lib/*.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
     "types/**/*.d.ts"
   ]
 }

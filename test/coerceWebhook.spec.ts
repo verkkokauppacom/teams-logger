@@ -1,4 +1,4 @@
-import coerceWebhook from '../lib/coerceWebhook'
+import coerceWebhook from '../src/coerceWebhook'
 
 describe('coerceWebhook', () => {
     it('should return valid webhook URL', () => {

@@ -1,7 +1,7 @@
-import simpleLogger from '../lib/simpleLogger'
-import rawLogger from '../lib/rawLogger'
+import simpleLogger from '../src/simpleLogger'
+import rawLogger from '../src/rawLogger'
 
-jest.mock('../lib/rawLogger', () =>
+jest.mock('../src/rawLogger', () =>
     jest.fn().mockReturnValue(Promise.resolve())
 )
 

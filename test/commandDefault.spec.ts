@@ -1,18 +1,18 @@
-jest.mock('../lib/catchErrors', () =>
+jest.mock('../src/rawLogger', () =>
     jest.fn().mockReturnValue(Promise.resolve())
 )
 
-import catchErrors from '../lib/catchErrors'
-import commandDefault from '../lib/commandDefault'
+import rawLogger from '../src/rawLogger'
+import commandDefault from '../src/commandDefault'
 
 describe('commandDefault', () => {
-    it('should call catchErrors', async () => {
+    it('should call rawLogger', async () => {
         await commandDefault({
             link: [],
             message: 'test',
             webhook: 'https://example.com'
         })
 
-        expect(catchErrors).toHaveBeenCalledTimes(1)
+        expect(rawLogger).toHaveBeenCalledTimes(1)
     })
 })

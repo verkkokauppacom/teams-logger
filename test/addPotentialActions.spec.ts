@@ -1,4 +1,4 @@
-import addPotentialActions from '../lib/addPotentialActions'
+import addPotentialActions from '../src/addPotentialActions'
 
 describe('addPotentialActions', () => {
     it('should default to empty message', () => {

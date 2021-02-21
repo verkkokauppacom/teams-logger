@@ -1,11 +1,5 @@
-/.nyc_output
-/coverage
-/node_modules
+coverage
+dist
+node_modules
 
-/.npmrc
-/index.js
-/bin/*.js
-/lib/*.js
-
-*.d.ts
-!types/**/*.d.ts
+.npmrc

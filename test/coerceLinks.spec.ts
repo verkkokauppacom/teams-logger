@@ -1,4 +1,4 @@
-import coerceLinks from '../lib/coerceLinks'
+import coerceLinks from '../src/coerceLinks'
 
 describe('coerceLinks', () => {
     it('should return empty array for no links', () => {

@@ -4,7 +4,7 @@ jest.spyOn(got, 'post').mockImplementation(
     jest.fn().mockReturnValue(Promise.resolve())
 )
 
-import rawLogger from '../lib/rawLogger'
+import rawLogger from '../src/rawLogger'
 
 describe('rawLogger', () => {
     it('should call got with correct arguments', async () => {
