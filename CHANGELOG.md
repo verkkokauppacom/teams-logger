@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/verkkokauppacom/teams-logger/compare/v2.2.1...v3.0.0) (2021-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* The rawLogger and simpleLogger methods no longer catch errors, call console.error, or set the process.exitCode. This allows for custom handling of errors and makes for a cleaner API.
+
+### Features
+
+* rewrite application in TypeScript ([6d31373](https://github.com/verkkokauppacom/teams-logger/commit/6d313737ee069bccc56f718e7a6076683e492f7f))
+
+
+### Bug Fixes
+
+* do not catch errors when using the Node.js API ([af42e81](https://github.com/verkkokauppacom/teams-logger/commit/af42e8191a45109125ec1e361f5c5e11fd65746a))
+* suppress errors from importing from .ts extension ([255e44a](https://github.com/verkkokauppacom/teams-logger/commit/255e44a4dea73aae134ab1d02192bdc3d7c5a4a9))
+* use SerializableObject type for json structures ([2c6c67c](https://github.com/verkkokauppacom/teams-logger/commit/2c6c67c4ca5956699ffc325b5e821127fb1dc66d))
+
 ### [2.2.1](https://github.com/verkkokauppacom/teams-logger/compare/v2.2.0...v2.2.1) (2021-02-19)
 
 ## [2.2.0](https://github.com/verkkokauppacom/teams-logger/compare/v2.1.0...v2.2.0) (2020-10-01)
