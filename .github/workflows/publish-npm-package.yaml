@@ -6,7 +6,7 @@ on:
     - v*
 
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -25,7 +25,7 @@ jobs:
           name: artifact
           path: package.tgz
 
-  Publish to npm:
+  npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -43,7 +43,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  Publish to GitHub Package Registry:
+  ghcr:
     needs: build
     runs-on: ubuntu-latest
     steps:
