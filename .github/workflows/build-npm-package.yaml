@@ -1,0 +1,31 @@
+name: Build npm package
+
+on:
+  pull_request:
+    branches:
+    - "*"
+  push:
+    branches:
+    - "*"
+    tags-ignore:
+    - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run build
+      - run: |
+          npm pack
+          mv *.tgz package.tgz
+      - uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: package.tgz

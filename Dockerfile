@@ -1,11 +1,19 @@
+FROM node:alpine as builder
+
+WORKDIR /teams-logger
+
+COPY . .
+RUN npm ci
+RUN npm run build
+
 FROM node:alpine
 
-COPY bin /bin
-COPY lib /lib
-COPY index.js /index.js
+LABEL org.opencontainers.image.source=https://github.com/verkkokauppacom/teams-logger
+WORKDIR /teams-logger
+ENTRYPOINT ["node" ,"bin/teams-logger.js"]
 
-COPY package.json package-lock.json /
-RUN npm ci --production
-RUN rm /package-lock.json
+COPY --from=builder /teams-logger/package.json /teams-logger/package-lock.json /teams-logger/
+RUN npm ci --production && rm package-lock.json
 
-ENTRYPOINT [ "/bin/teams-logger.js" ]
+COPY --from=builder /teams-logger/bin/*.js /teams-logger/bin/
+COPY --from=builder /teams-logger/lib/*.js /teams-logger/lib/

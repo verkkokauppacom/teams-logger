@@ -1,0 +1,28 @@
+name: Publish OCI Image
+
+on:
+  push:
+    tags:
+    - v*
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ github.repository_owner }}/teams-logger
+          tags: latest ${{ github.event.release.tag_name }}
+          base-image: node:alpine
+          oci: true
+          dockerfiles: |
+            ./Dockerfile
+      - uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build.outputs.image }}
+          tags: ${{ steps.build.outputs.tags }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}

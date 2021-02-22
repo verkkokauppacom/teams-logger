@@ -1,12 +1,18 @@
+import type { Link } from './coerceLinks'
+import type { SerializableObject } from './coerceJson'
+
 /**
  * Add Office 365 Connector message OpenUri actions to JSON message
  * @param {Object} message - Office 365 Connector JSON
  * @param {Array<[string, string]>} links - Parsed links as `[label, url]` tuples
  * @returns {Object} - Office 365 Connector JSON
  */
-module.exports = (message = {}, links = []) => {
+const addPotentialActions = (
+    message: SerializableObject = {},
+    links: Link[] = []
+): SerializableObject => {
     if (!Array.isArray(links)) {
-        throw 'Links is not an array!'
+        throw new Error('Links is not an array!')
     }
 
     if (links.length === 0) {
@@ -15,7 +21,7 @@ module.exports = (message = {}, links = []) => {
 
     const potentialAction = links.map(({ label, href }) => {
         if (!(typeof label === 'string' && typeof href === 'string')) {
-            throw 'Error parsing links!'
+            throw new Error('Error parsing links!')
         }
 
         return {
@@ -32,3 +38,5 @@ module.exports = (message = {}, links = []) => {
 
     return { ...message, potentialAction }
 }
+
+export default addPotentialActions

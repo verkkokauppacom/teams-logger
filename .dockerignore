@@ -1,5 +1,9 @@
 *
-!bin/*
-!lib/*
-!index.js
-!package*.json
+
+!bin
+!lib
+!types
+!LICENSE
+!package-lock.json
+!package.json
+!tsconfig.json

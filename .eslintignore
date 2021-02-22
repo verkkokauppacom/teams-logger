@@ -5,6 +5,5 @@ lib/*.d.ts
 lib/*.js
 node_modules
 
-.npmrc
 index.d.ts
 index.js

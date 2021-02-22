@@ -1,23 +1,24 @@
 #!/usr/bin/env node
 
-'use strict'
+import { load } from 'pipe-args'
+import yargs from 'yargs'
 
-require('pipe-args').load()
+import coerceJson from '../lib/coerceJson'
+import coerceLinks from '../lib/coerceLinks'
+import coerceWebhook from '../lib/coerceWebhook'
+import commandDefault from '../lib/commandDefault'
+import commandRaw from '../lib/commandRaw'
 
-const pkg = require('../package.json')
-
-const coerceJson = require('../lib/coerceJson')
-const coerceLinks = require('../lib/coerceLinks')
-const coerceWebhook = require('../lib/coerceWebhook')
-
-const { rawLogger, simpleLogger } = require('../')
-
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { version } = require('../package.json')
 const ENV_PREFIX = 'TEAMS_LOGGER'
 
-require('yargs')
+load()
+
+yargs
     .env(ENV_PREFIX)
     .scriptName('teams-logger')
-    .version(pkg.version)
+    .version(version)
     .option('webhook', {
         alias: 'w',
         describe: `Microsoft Teams Webhook [${ENV_PREFIX}_WEBHOOK]`,
@@ -49,17 +50,10 @@ require('yargs')
                 .positional('message', {
                     describe: 'Markdown message.',
                     require: true,
-                    type: 'markdown'
+                    type: 'string'
                 })
         },
-        ({ allowFailure, link, message, timeout, webhook }) =>
-            simpleLogger({
-                allowFailure,
-                links: link,
-                message,
-                timeout,
-                webhook
-            })
+        commandDefault
     )
     .command(
         'raw [json]',
@@ -68,10 +62,9 @@ require('yargs')
             yargs.positional('json', {
                 describe: 'Valid Microsoft Teams JSON message.',
                 require: true,
-                type: 'json',
+                type: 'string',
                 coerce: coerceJson
             })
         },
-        ({ allowFailure, json, timeout, webhook }) =>
-            rawLogger({ allowFailure, json, timeout, webhook })
+        commandRaw
     ).argv
