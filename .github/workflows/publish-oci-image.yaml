@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - id: build
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ github.repository_owner }}/teams-logger
-          tags: latest ${{ github.event.release.tag_name }}
+          tags: latest ${{ steps.vars.outputs.tag }}
           base-image: node:alpine
           oci: true
           dockerfiles: |
