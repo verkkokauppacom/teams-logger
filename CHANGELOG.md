@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.1...v3.0.2) (2021-02-22)
+
+
+### Bug Fixes
+
+* extract version number tag from refs/*/<tag> ([7bd45b5](https://github.com/verkkokauppacom/teams-logger/commit/7bd45b58977d5f67578839d62a8f334f50c76a44))
+
 ### [3.0.1](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.0...v3.0.1) (2021-02-22)
 
 
