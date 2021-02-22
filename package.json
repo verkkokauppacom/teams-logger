@@ -47,7 +47,7 @@
     },
     "standard-version": {
         "scripts": {
-            "prerelease": "npm run lint:base && npm test"
+            "prerelease": "npm run lint && npm test && npm run build"
         }
     },
     "dependencies": {
