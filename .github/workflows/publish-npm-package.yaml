@@ -17,14 +17,13 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run build
-      - working-directory: ./dist
-        run: |
+      - run: |
           npm pack
           mv *.tgz package.tgz
       - uses: actions/upload-artifact@v1
         with:
           name: artifact
-          path: dist/package.tgz
+          path: package.tgz
 
   Publish to npm:
     needs: build

@@ -1,4 +1,5 @@
-import coerceWebhook from '../src/coerceWebhook'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import coerceWebhook from '../lib/coerceWebhook.ts'
 
 describe('coerceWebhook', () => {
     it('should return valid webhook URL', () => {

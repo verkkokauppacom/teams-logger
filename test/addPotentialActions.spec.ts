@@ -1,4 +1,5 @@
-import addPotentialActions from '../src/addPotentialActions'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import addPotentialActions from '../lib/addPotentialActions.ts'
 
 describe('addPotentialActions', () => {
     it('should default to empty message', () => {
@@ -34,14 +35,12 @@ describe('addPotentialActions', () => {
 
     it('should throw when links not an array', () => {
         expect(() =>
-            /** @ts-expect-error - invalid argument */
             addPotentialActions({}, {})
         ).toThrowErrorMatchingInlineSnapshot(`"Links is not an array!"`)
     })
 
     it('should throw when links are invalid', () => {
         expect(() =>
-            /** @ts-expect-error - invalid argument */
             addPotentialActions({}, ['test'])
         ).toThrowErrorMatchingInlineSnapshot(`"Error parsing links!"`)
     })

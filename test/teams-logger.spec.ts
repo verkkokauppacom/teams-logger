@@ -4,7 +4,7 @@ import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { version } = require('../package.json')
 
-const binPath = path.resolve(process.cwd(), './src/bin.ts')
+const binPath = path.resolve(process.cwd(), './bin/teams-logger.ts')
 
 describe('teams-logger', () => {
     it('should print correct version number', async () => {

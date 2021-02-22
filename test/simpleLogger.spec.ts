@@ -1,7 +1,8 @@
-import simpleLogger from '../src/simpleLogger'
-import rawLogger from '../src/rawLogger'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import simpleLogger from '../lib/simpleLogger.ts'
+import rawLogger from '../lib/rawLogger'
 
-jest.mock('../src/rawLogger', () =>
+jest.mock('../lib/rawLogger', () =>
     jest.fn().mockReturnValue(Promise.resolve())
 )
 

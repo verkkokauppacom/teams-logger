@@ -1,4 +1,8 @@
-coverage
-dist
-node_modules
-test
+*
+
+!bin
+!lib
+!LICENSE
+!package-lock.json
+!package.json
+!tsconfig.json

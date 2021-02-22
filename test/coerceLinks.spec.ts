@@ -1,4 +1,5 @@
-import coerceLinks from '../src/coerceLinks'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import coerceLinks from '../lib/coerceLinks.ts'
 
 describe('coerceLinks', () => {
     it('should return empty array for no links', () => {

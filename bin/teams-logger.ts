@@ -3,11 +3,11 @@
 import { load } from 'pipe-args'
 import yargs from 'yargs'
 
-import coerceJson from './coerceJson'
-import coerceLinks from './coerceLinks'
-import coerceWebhook from './coerceWebhook'
-import commandDefault from './commandDefault'
-import commandRaw from './commandRaw'
+import coerceJson from '../lib/coerceJson'
+import coerceLinks from '../lib/coerceLinks'
+import coerceWebhook from '../lib/coerceWebhook'
+import commandDefault from '../lib/commandDefault'
+import commandRaw from '../lib/commandRaw'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { version } = require('../package.json')

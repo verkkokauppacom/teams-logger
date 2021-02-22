@@ -1,4 +1,5 @@
-import catchErrors from '../src/catchErrors'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import catchErrors from '../lib/catchErrors.ts'
 
 describe('catchErrors', () => {
     jest.spyOn(console, 'error').mockImplementation(jest.fn())

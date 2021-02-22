@@ -1,3 +1,9 @@
 coverage
-dist
+bin/*.d.ts
+bin/*.js
+lib/*.d.ts
+lib/*.js
 node_modules
+
+index.d.ts
+index.js

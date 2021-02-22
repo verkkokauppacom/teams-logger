@@ -1,9 +1,10 @@
-jest.mock('../src/rawLogger', () =>
+jest.mock('../lib/rawLogger', () =>
     jest.fn().mockReturnValue(Promise.resolve())
 )
 
-import rawLogger from '../src/rawLogger'
-import commandDefault from '../src/commandDefault'
+import rawLogger from '../lib/rawLogger'
+/** @ts-expect-error - explicit .ts import for test coverage */
+import commandDefault from '../lib/commandDefault.ts'
 
 describe('commandDefault', () => {
     it('should call rawLogger', async () => {
