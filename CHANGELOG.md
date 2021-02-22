@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.0...v3.0.1) (2021-02-22)
+
+
+### Bug Fixes
+
+* run publish jobs on "release published" event, instead of pushed tag ([0089505](https://github.com/verkkokauppacom/teams-logger/commit/0089505b6bc51925db6d788e0e9a1b4d29e1c5c9))
+
 ## [3.0.0](https://github.com/verkkokauppacom/teams-logger/compare/v2.2.1...v3.0.0) (2021-02-22)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@verkkokauppacom/teams-logger",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Send messages to Microsoft Teams via a custom incoming webhook",
     "author": "Iiro Jäppinen <iiro.jappinen@verkkokauppa.com>",
     "license": "MIT",
