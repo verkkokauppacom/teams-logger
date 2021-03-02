@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-import { load } from 'pipe-args'
+// This has to be loaded before importing yargs
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('pipe-args').load()
+
 import yargs from 'yargs'
 
 import coerceJson from '../lib/coerceJson'
@@ -12,8 +15,6 @@ import commandRaw from '../lib/commandRaw'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { version } = require('../package.json')
 const ENV_PREFIX = 'TEAMS_LOGGER'
-
-load()
 
 yargs
     .env(ENV_PREFIX)
