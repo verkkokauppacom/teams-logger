@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.3...v3.0.4) (2021-03-02)
+
+
+### Bug Fixes
+
+* echoing was broken after TypeScript rewrite ([0e30926](https://github.com/verkkokauppacom/teams-logger/commit/0e3092607338ddaecd241a3294b257ea217bd8a0))
+
 ### [3.0.3](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.2...v3.0.3) (2021-03-02)
 
 
