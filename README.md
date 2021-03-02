@@ -68,14 +68,14 @@ The only required configuration is the Webhook URL for posting messages to a cer
 Post a message to a channel:
 
 ```bash
-export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
+export WEBHOOK_URL="https://example.webhook.office.com/webhookb2/XXX/IncomingWebhook/YYY"
 teams-logger "Hello, world\!"
 ```
 
 Post Markdown to a channel:
 
 ```bash
-export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
+export WEBHOOK_URL="https://example.webhook.office.com/webhookb2/XXX/IncomingWebhook/YYY"
 echo "# Hello, world\!
 ----
 This is the message body.
@@ -85,7 +85,7 @@ This is the message body.
 Add Link button to a message:
 
 ```bash
-teams-logger "Click the button\!" --button "[The Button](https://example.com)" --webhook "https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
+teams-logger "Click the button\!" --button "[The Button](https://example.com)" --webhook "https://example.webhook.office.com/webhookb2/XXX/IncomingWebhook/YYY"
 ```
 
 ### Advanced CLI
@@ -93,7 +93,7 @@ teams-logger "Click the button\!" --button "[The Button](https://example.com)" -
 You can learn how to create custom messages by following the [Post an actionable message card to an Office 365 group](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors) tutorial:
 
 ```bash
-export WEBHOOK_URL="https://outlook.office.com/webhook/XXX/IncomingWebhook/YYY"
+export WEBHOOK_URL="https://example.webhook.office.com/webhookb2/XXX/IncomingWebhook/YYY"
 cat my_json_message.json | teams-logger raw
 ```
 

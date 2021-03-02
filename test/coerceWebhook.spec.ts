@@ -7,6 +7,12 @@ describe('coerceWebhook', () => {
         expect(coerceWebhook(url)).toEqual(url)
     })
 
+    it('should return valid v2 webhook URL', () => {
+        const url =
+            'https://example.webhook.office.com/webhookb2/XXX/IncomingWebhook/YYY'
+        expect(coerceWebhook(url)).toEqual(url)
+    })
+
     it('should throw when invalid webhook URL', () => {
         expect(() =>
             coerceWebhook('https://example.com')
