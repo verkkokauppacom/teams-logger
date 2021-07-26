@@ -35,6 +35,6 @@ describe('teams-logger', () => {
                 'raw',
                 '{"foo":"bar"}'
             ])
-        ).rejects.toThrowError('Missing required argument: webhook')
+        ).rejects.toThrowError('Invalid webhook!')
     })
 })
