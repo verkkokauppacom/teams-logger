@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.4...v4.0.0) (2021-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* The return type from the Node.js API is now
+`Promise<http.IncomingMessage>` instead of `Promise<got.Response>`.
+
+### Features
+
+* remove got as a dependency and use native https.request ([d60f1a2](https://github.com/verkkokauppacom/teams-logger/commit/d60f1a207c379ca75b39ef1e54584f05fbb2cde1))
+
 ### [3.0.4](https://github.com/verkkokauppacom/teams-logger/compare/v3.0.3...v3.0.4) (2021-03-02)
 
 

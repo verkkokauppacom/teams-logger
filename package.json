@@ -1,6 +1,6 @@
 {
     "name": "@verkkokauppacom/teams-logger",
-    "version": "3.0.4",
+    "version": "4.0.0",
     "description": "Send messages to Microsoft Teams via a custom incoming webhook",
     "author": "Iiro Jäppinen <iiro.jappinen@verkkokauppa.com>",
     "license": "MIT",
@@ -28,7 +28,10 @@
         "version": "standard-version --no-verify"
     },
     "jest": {
-        "collectCoverageFrom": ["./bin/!(*.d).ts", "./lib/!(*.d).ts"],
+        "collectCoverageFrom": [
+            "./bin/!(*.d).ts",
+            "./lib/!(*.d).ts"
+        ],
         "preset": "ts-jest",
         "testEnvironment": "node"
     },
