@@ -28,6 +28,7 @@
         "version": "standard-version --no-verify"
     },
     "jest": {
+        "collectCoverageFrom": ["./bin/!(*.d).ts", "./lib/!(*.d).ts"],
         "preset": "ts-jest",
         "testEnvironment": "node"
     },
@@ -45,7 +46,6 @@
         }
     },
     "dependencies": {
-        "got": "^11.8.2",
         "pipe-args": "^1.3.0",
         "yargs": "^17.0.1"
     },

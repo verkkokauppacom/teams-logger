@@ -1,6 +1,6 @@
-import type { Response } from 'got'
-import type { Link } from './coerceLinks'
+import type { IncomingMessage } from 'http'
 import type { SerializableObject } from './coerceJson'
+import type { Link } from './coerceLinks'
 
 import addPotentialActions from './addPotentialActions'
 import rawLogger from './rawLogger'
@@ -18,7 +18,7 @@ const simpleLogger = ({
     message,
     timeout = 5,
     webhook
-}: Args): Promise<Response> => {
+}: Args): Promise<IncomingMessage> => {
     let json: SerializableObject = {
         '@type': 'MessageCard',
         '@context': 'http://schema.org/extensions',

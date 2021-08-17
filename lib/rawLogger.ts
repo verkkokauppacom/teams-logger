@@ -1,7 +1,10 @@
-import type { Response } from 'got'
+import type { IncomingMessage } from 'http'
+import type { RequestOptions } from 'https'
 import type { SerializableObject } from './coerceJson'
 
-import got from 'got'
+import https from 'https'
+
+export class RequestError extends Error {}
 
 interface Args {
     json: SerializableObject /** JSON Message as JavaScript object */
@@ -16,11 +19,58 @@ const rawLogger = async ({
     json,
     timeout = 5,
     webhook
-}: Args): Promise<Response> => {
-    const timeoutMilliSeconds = timeout * 1000
-    const options = { json, timeout: timeoutMilliSeconds }
-    const response = await got.post(webhook, options)
-    return response
-}
+}: Args): Promise<IncomingMessage> =>
+    new Promise((resolve, reject) => {
+        const data = new TextEncoder().encode(JSON.stringify(json))
+
+        const { hostname, pathname } = new URL(webhook)
+
+        const options: RequestOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+            },
+            hostname,
+            method: 'POST',
+            path: pathname,
+            port: 443,
+            timeout: timeout * 1000 /** milliseconds */
+        }
+
+        const request = https.request(options, (response) => {
+            const { statusCode, statusMessage } = response
+
+            if (!statusCode || statusCode < 200 || statusCode > 299) {
+                reject(
+                    new RequestError(
+                        `Failed with status ${statusCode}: ${statusMessage}`
+                    )
+                )
+            }
+
+            response.on('end', () => {
+                if (response.complete) {
+                    resolve(response)
+                } else {
+                    reject(
+                        new RequestError(
+                            'The connection was terminated while the message was still being sent'
+                        )
+                    )
+                }
+            })
+        })
+
+        request.on('error', (error) => {
+            reject(error)
+        })
+
+        request.on('timeout', () => {
+            reject(new RequestError(`Timed out after ${timeout} seconds`))
+        })
+
+        request.write(data)
+        request.end()
+    })
 
 export default rawLogger
